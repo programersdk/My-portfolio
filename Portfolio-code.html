@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehan Bahi - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* style.css starts here */
+
+        /* Variables for easy theme management */
+        :root {
+            --background-dark: #121212;
+            --card-dark: #1e1e1e;
+            --text-light: #e0e0e0;
+            --neon-accent: #00ffff; /* Cyan neon */
+            --neon-glow: 0 0 5px var(--neon-accent), 0 0 10px var(--neon-accent), 0 0 15px var(--neon-accent);
+            --border-color: #333;
+            --transition-speed: 0.3s;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Typography */
+        h1, h2 {
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid var(--neon-accent);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: var(--neon-accent);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease-in-out;
+        }
+
+        a:hover {
+            color: var(--text-light);
+            text-shadow: var(--neon-glow);
+        }
+
+        .neon-link {
+             color: var(--neon-accent);
+             text-decoration: none;
+             transition: color var(--transition-speed) ease-in-out, text-shadow var(--transition-speed) ease-in-out;
+        }
+
+        .neon-link:hover {
+             color: var(--text-light); /* Or keep neon color */
+             text-shadow: var(--neon-glow);
+        }
+
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: var(--neon-accent);
+            text-shadow: var(--neon-glow);
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+
+        /* About Section */
+        .profile-img {
+            display: block; /* Make it a block element */
+            margin: 0 auto 30px auto; /* Center and add space below */
+            width: 150px; /* Set a fixed size */
+            height: 150px; /* Set a fixed size */
+            border-radius: 50%; /* Make it round */
+            object-fit: cover; /* Ensure image covers the area without distortion */
+            border: 3px solid var(--neon-accent); /* Add a neon border */
+            box-shadow: var(--neon-glow); /* Add a soft glow */
+            transition: transform var(--transition-speed) ease-in-out;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+
+        .about-list li {
+            background-color: var(--card-dark);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .about-list li i {
+            color: var(--neon-accent);
+            font-size: 1.2em;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-top: 2px; /* Slight adjustment for alignment */
+        }
+
+
+        /* Card Styles */
+        .card {
+            background-color: var(--card-dark);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+        }
+
+        .card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Project Cards */
+        .project-card {
+            overflow: hidden; /* Important for smooth max-height transition */
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding-bottom: 10px; /* Space between header and content initially */
+            border-bottom: 1px solid transparent; /* Initial transparent border */
+            transition: border-color var(--transition-speed) ease-in-out;
+        }
+
+        .project-card.active .project-header {
+             border-bottom-color: var(--border-color); /* Add border when active */
+        }
+
+
+        .project-header h3 {
+            margin: 0; /* Remove default margin */
+            margin-left: 10px; /* Space between icon and title */
+            flex-grow: 1; /* Allow title to take available space */
+            font-size: 1.3em;
+            color: var(--neon-accent);
+            transition: color var(--transition-speed) ease-in-out;
+        }
+
+        .project-card:hover .project-header h3 {
+            color: var(--text-light);
+        }
+
+        .project-header i {
+            color: var(--neon-accent); /* Project icons use neon color */
+            font-size: 1.2em;
+            transition: transform var(--transition-speed) ease-in-out;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+         .project-header i.fa-chevron-down {
+             color: var(--text-light); /* Collapse arrow icon stays light */
+             font-size: 1em; /* Make arrow slightly smaller */
+             margin-left: 15px; /* Space between title and arrow */
+         }
+
+        .project-card.active .project-header i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .project-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed) ease-in-out, padding-top var(--transition-speed) ease-in-out;
+            padding-top: 0; /* Initial state */
+        }
+
+        .project-card.active .project-content {
+            max-height: 1000px; /* Needs to be large enough to fit content */
+            padding-top: 20px; /* Add space when open */
+        }
+
+        .project-content p {
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .project-content p strong {
+            color: var(--text-light); /* Ensure bold text is readable */
+        }
+
+
+        /* Contact Card */
+        .contact-card p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-card i {
+             color: var(--neon-accent);
+        }
+
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* Animation Styles */
+        .animate-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+        .delay-7 { transition-delay: 0.7s; }
+        .delay-8 { transition-delay: 0.8s; }
+        .delay-9 { transition-delay: 0.9s; }
+        /* Add more delays if needed */
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px 40px;
+            }
+
+            section {
+                padding: 30px 0;
+            }
+
+            .profile-img {
+                 width: 120px;
+                 height: 120px;
+                 margin-bottom: 20px;
+            }
+
+            .about-list li {
+                padding: 12px 15px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .project-header h3 {
+                font-size: 1.1em;
+            }
+
+            .project-content p {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+             h1 {
+                 font-size: 1.8em;
+             }
+
+             h2 {
+                 font-size: 1.4em;
+             }
+
+            .tagline {
+                font-size: 1em;
+            }
+
+             .profile-img {
+                 width: 100px;
+                 height: 100px;
+             }
+
+            .about-list li {
+                 flex-direction: column; /* Stack icon and text */
+                 align-items: center;
+                 text-align: center;
+                 gap: 8px;
+            }
+
+             .about-list li i {
+                 margin-top: 0;
+             }
+
+             .project-header {
+                 flex-direction: column; /* Stack icon/title and arrow */
+                 align-items: center;
+                 text-align: center;
+                 gap: 8px;
+             }
+
+             .project-header h3 {
+                 margin-left: 0; /* Remove left margin when stacked */
+             }
+
+            .project-header i.fa-chevron-down {
+                margin-left: 0; /* Remove left margin when stacked */
+            }
+
+        }
+
+        /* style.css ends here */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1 class="animate-text">Rehan Bahi</h1>
+            <p class="tagline animate-text delay-1">Tech Enthusiast | Content Creator | Lifelong Learner</p>
+        </header>
+
+        <section id="about">
+            <h2 class="section-title animate-text">About Me</h2>
+            <!-- Add Profile Image Here -->
+            <img src="pla.jpg" alt="Rehan Bahi Profile Picture" class="profile-img animate-text delay-2">
+
+            <p class="animate-text delay-3">
+                I am a passionate learner, tech enthusiast, and content creator focused on empowering youth through technology. I believe in continuous growth and applying knowledge to real-world challenges.
+            </p>
+            <ul class="about-list">
+                <li class="animate-text delay-4">
+                    <i class="fas fa-book-open"></i> Currently mastering Python, JavaScript, and Cybersecurity through a university-style structured approach.
+                </li>
+                <li class="animate-text delay-5">
+                    <i class="fas fa-mobile-alt"></i> Working with Google AppSheet, focusing on app creation, database integration, and secure deployment.
+                </li>
+                <li class="animate-text delay-6">
+                    <i class="fas fa-chalkboard-teacher"></i> Challenged himself to complete JavaScript in just 10 days with daily focused classes.
+                </li>
+                <li class="animate-text delay-7">
+                    <i class="fas fa-dollar-sign"></i> Studying Money Management, Taxation, and Pakistan’s Financial System using real-world examples.
+                </li>
+                <li class="animate-text delay-8">
+                    <i class="fas fa-robot"></i> Training a custom Gemini AI assistant using daily scripting.
+                </li>
+                <li class="animate-text delay-9">
+                    <i class="fas fa-microphone-alt"></i> Created a 7-stage Personal Branding lecture series in Urdu.
+                </li>
+                <li class="animate-text delay-10">
+                    <i class="fab fa-youtube"></i> Runs a YouTube channel named "<a href="https://www.youtube.com/@RehanBhaii" target="_blank" class="neon-link">Rehan Bhai</a>" focused on helping others through technology, featuring Shorts and Long-form videos.
+                </li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title animate-text">Projects & Case Studies</h2>
+            <div class="project-list">
+
+                <!-- Project Card Placeholder 1 -->
+                <div class="card project-card animate-text delay-1">
+                    <div class="project-header">
+                        <i class="fas fa-cogs"></i> <!-- Icon for AppSheet/Automation -->
+                        <h3>AppSheet Inventory App</h3>
+                        <i class="fas fa-chevron-down"></i> <!-- Collapse icon -->
+                    </div>
+                    <div class="project-content">
+                        <p><strong>Description:</strong> Developed a functional inventory management application using Google AppSheet, integrated with Google Sheets for data storage.</p>
+                        <p><strong>Skills Gained:</strong> Low-code development, database design (via Google Sheets), data modeling, user interface design (AppSheet), basic automation within AppSheet.</p>
+                        <p><strong>Challenges & Solutions:</strong> Handling complex relationships between tables (e.g., products, suppliers, transactions). Solved by carefully structuring sheet data and using AppSheet's reference and expression features.</p>
+                        <p><strong>Final Outcome:</strong> A usable application capable of tracking stock levels, adding new items, and recording transactions, demonstrating proficiency in low-code business application development.</p>
+                        <!-- Optional Link: <p><a href="#" target="_blank" class="neon-link">View Details</a></p> -->
+                    </div>
+                </div>
+
+                 <!-- Project Card Placeholder 2 -->
+                 <div class="card project-card animate-text delay-2">
+                    <div class="project-header">
+                         <i class="fab fa-js"></i> <!-- Icon for JavaScript -->
+                        <h3>10-Day JavaScript Challenge</h3>
+                        <i class="fas fa-chevron-down"></i> <!-- Collapse icon -->
+                    </div>
+                    <div class="project-content">
+                        <p><strong>Description:</strong> An intensive personal challenge to rapidly learn and apply core JavaScript concepts within a 10-day period through daily structured study and coding exercises.</p>
+                        <p><strong>Skills Gained:</strong> JavaScript fundamentals (variables, data types, control flow, functions, objects, arrays), DOM manipulation, event handling, discipline in rapid skill acquisition.</p>
+                        <p><strong>Challenges & Solutions:</strong> Maintaining focus and retaining information under pressure. Solved by consistent daily practice, immediate application of concepts in small projects, and using multiple learning resources.</p>
+                        <p><strong>Final Outcome:</strong> Solid foundational understanding of JavaScript, enabling quicker learning of frameworks/libraries and confidence in tackling front-end development tasks.</p>
+                    </div>
+                </div>
+
+                <!-- Project Card Placeholder 3 -->
+                <div class="card project-card animate-text delay-3">
+                    <div class="project-header">
+                        <i class="fas fa-robot"></i> <!-- Icon for AI/Robot -->
+                        <h3>Gemini AI Assistant Training</h3>
+                        <i class="fas fa-chevron-down"></i> <!-- Collapse icon -->
+                    </div>
+                    <div class="project-content">
+                        <p><strong>Description:</strong> Ongoing project involving daily scripting and interaction to train a custom AI assistant (using Gemini API or similar tools) for specific tasks and knowledge domains.</p>
+                        <p><strong>Skills Gained:</strong> AI interaction principles, prompt engineering, scripting (Python/JS often used for API calls), understanding AI limitations and capabilities, iterative refinement.</p>
+                        <p><strong>Challenges & Solutions:</strong> Achieving precise or desired behavior from the AI, managing API costs (if applicable), dealing with occasional irrelevant outputs. Solved by experimenting with different prompt structures, providing clear context, and implementing filtering/validation of responses.</p>
+                        <p><strong>Final Outcome:</strong> A more refined AI assistant tailored for specific purposes, demonstrating practical experience in interacting with and customizing large language models.</p>
+                    </div>
+                </div>
+
+                <!-- Add more project cards here following the same structure, incrementing delay classes -->
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title animate-text">Get in Touch</h2>
+            <div class="card contact-card animate-text delay-1">
+                <p><i class="fas fa-phone-alt"></i> Phone: 0329-9270947</p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:ybfoyt@gmail.com" class="neon-link">ybfoyt@gmail.com</a></p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Rehan Bahi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // script.js starts here
+
+        // --- Collapsible Project Cards ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectHeaders = document.querySelectorAll('.project-header');
+
+            projectHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const projectCard = this.closest('.project-card');
+                    const content = projectCard.querySelector('.project-content');
+
+                    // Toggle the 'active' class on the card
+                    projectCard.classList.toggle('active');
+
+                    // Animate the content
+                    if (projectCard.classList.contains('active')) {
+                        // Set max-height to scrollHeight to allow transition to full height
+                        content.style.maxHeight = content.scrollHeight + "px";
+                         // The resize listener helps keep this updated
+                    } else {
+                        // Before setting max-height to 0, ensure it's explicitly set to current height
+                         content.style.maxHeight = content.scrollHeight + "px"; // Set current height
+                         requestAnimationFrame(() => { // Wait for next frame before collapsing
+                              content.style.maxHeight = "0";
+                         });
+                    }
+                });
+
+                 // Optional: Adjust max-height on window resize if card is open
+                 window.addEventListener('resize', () => {
+                     // Find all open project cards
+                     const openCards = document.querySelectorAll('.project-card.active');
+                     openCards.forEach(card => {
+                          const content = card.querySelector('.project-content');
+                          // Temporarily remove transition to prevent jumpiness during resize
+                          content.style.transition = 'none';
+                          content.style.maxHeight = content.scrollHeight + "px";
+                          // Re-apply transition after a short delay
+                          setTimeout(() => {
+                              content.style.transition = 'max-height var(--transition-speed) ease-in-out, padding-top var(--transition-speed) ease-in-out';
+                          }, 10); // Small delay
+                     });
+                 });
+            });
+        });
+
+
+        // --- Text Animation on Scroll ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-text');
+
+            const observerOptions = {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Don't unobserve immediately for elements that might be affected by collapse (optional)
+                        // For text elements, unobserving is fine.
+                        if (!entry.target.classList.contains('project-card') && !entry.target.classList.contains('profile-img')) {
+                             //observer.unobserve(entry.target);
+                        }
+                         // Keep observing profile-img and project-card so they re-animate if scrolled out and back in?
+                         // Or unobserve for performance? Let's unobserve everything for simplicity and performance.
+                         observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        // script.js ends here
+    </script>
+</body>
+</html>
